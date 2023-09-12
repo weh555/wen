@@ -47,8 +47,8 @@
           </div>
           <div class="map-right-control" @click="hideLeftTreeHandle">
 
-            <i small class="el-icon-arrow-left" v-show="this.isShowLeftTree"></i>
-            <i small class="el-icon-arrow-right" v-show="!this.isShowLeftTree"></i>
+            <i small class="el-icon-arrow-left" v-if="this.isShowLeftTree"></i>
+            <i small class="el-icon-arrow-right" v-if="!this.isShowLeftTree"></i>
 
           </div>
         </div>
@@ -84,35 +84,35 @@
         <div class="cbxm-tab-div" v-show="xmglMenuOpt == 2">
           <el-tabs class="cbxm-tab" v-model="cbxm.activeMenuName" @tab-click="cbxmTabsClick">
             <el-tab-pane v-for="item in cbxm.menuOpt" :label="item.label" :name="item.id">
-              <div class="opt-1">
-                <el-table :data="cbxm.tableData" border stripe style="width: 100%">
-                  <el-table-column fixed prop="id" label="id" width="100">
-                  </el-table-column>
-                  <el-table-column fixed prop="xmmc" label="项目名称" width="300">
-                  </el-table-column>
-                  <el-table-column prop="tzgm" label="项目规模（公顷）" width="220">
-                  </el-table-column>
-                  <el-table-column prop="cjdw" label="计划投资（万元）" width="200">
-                  </el-table-column>
-                  <el-table-column prop="lxsj" label="项目类型" width="120">
-                  </el-table-column>
-                  <el-table-column prop="xmlx" label="项目所在地" width="300">
-                  </el-table-column>
-                  <el-table-column prop="xmdz" label="位置查看" width="320">
-                    <template slot-scope="scope">
-                      <el-button type="primary" size="mini" disable-transitions>位置查看</el-button>
-                    </template>
-                  </el-table-column>
-                  <el-table-column prop="data1" label="实施期限" width="120">
-                  </el-table-column>
-                  <el-table-column prop="data2" label="重点任务" width="120">
-                  </el-table-column>
-                </el-table>
-                <el-pagination class="page-size" @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                  :current-page="cbxm.currentPage4" :page-sizes="[100, 200, 300, 400]" :page-size="100"
-                  layout="total, sizes, prev, pager, next, jumper" :total="400">
-                </el-pagination>
-              </div>
+              <el-table :data="cbxm.data" border stripe style="width: 100%">
+                <el-table-column fixed type="index" align="center" width="50">
+                </el-table-column>
+                <el-table-column fixed prop="xmmc" align="center" label="项目名称" width="380">
+                </el-table-column>
+                <el-table-column prop="xmgm" align="center" label="项目规模（公顷）" width="220">
+                </el-table-column>
+                <el-table-column prop="xmtz" align="center" label="计划投资（万元）" width="200">
+                </el-table-column>
+                <el-table-column prop="xmlx" align="center" label="项目类型" width="120">
+                </el-table-column>
+                <el-table-column prop="xmszd" align="center" label="项目所在地" width="300">
+                </el-table-column>
+                <el-table-column prop="wz" align="center" label="位置" width="320">
+                  <template slot-scope="scope">
+                    <el-button type="primary" align="center" size="mini" disable-transitions>位置查看</el-button>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="ssqx" align="center" label="实施期限" width="120">
+                </el-table-column>
+                <el-table-column prop="zdrw" align="center" label="重点任务" width="120">
+                </el-table-column>
+                <el-table-column prop="cjsj" align="center" label="创建时间" width="200">
+                </el-table-column>
+              </el-table>
+              <el-pagination class="page-size" @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                :current-page="cbxm.currentPage4" :page-sizes="[100, 200, 300, 400]" :page-size="100"
+                layout="total, sizes, prev, pager, next, jumper" :total="400">
+              </el-pagination>
             </el-tab-pane>
           </el-tabs>
         </div>
@@ -121,40 +121,38 @@
         <div class="cbxm-tab-div" v-show="xmglMenuOpt == 3">
           <el-tabs class="cbxm-tab" v-model="zjxm.activeTabIndex" @tab-click="cbxmTabsClick">
             <el-tab-pane v-for="item in cbxm.menuOpt" :label="item.label" :name="item.id">
-              <div class="opt-1">
-                <el-table :data="cbxm.tableData" border stripe style="width: 100%">
-                  <el-table-column fixed prop="id" label="id" width="100">
-                  </el-table-column>
-                  <el-table-column fixed prop="xmmc" label="项目名称" width="300">
-                  </el-table-column>
-                  <el-table-column prop="tzgm" label="计划项目建设总规模（公顷）" width="220">
-                  </el-table-column>
-                  <el-table-column prop="cjdw" label="计划项目总投资（万元）" width="200">
-                  </el-table-column>
-                  <el-table-column prop="lxsj" label="立项批复日期" width="120">
-                  </el-table-column>
-                  <el-table-column prop="xmlx" label="项目投资主体" width="300">
-                  </el-table-column>
-                  <el-table-column prop="xmdz" label="项目实施单位" width="320">
-                  </el-table-column>
-                  <el-table-column prop="data1" label="项目所在地" width="120">
-                  </el-table-column>
-                  <el-table-column prop="data2" label="位置查看" width="120">
-                    <template slot-scope="scope">
-                      <el-button type="primary" size="mini" disable-transitions>位置查看</el-button>
-                    </template>
-                  </el-table-column>
-                  <el-table-column prop="data2" label="详细资料" width="120">
-                    <template slot-scope="scope">
-                      <el-button type="primary" @click="zjxmDetail()" size="mini" disable-transitions>详细资料</el-button>
-                    </template>
-                  </el-table-column>
-                </el-table>
-                <el-pagination class="page-size" @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                  :current-page="cbxm.currentPage4" :page-sizes="[100, 200, 300, 400]" :page-size="100"
-                  layout="total, sizes, prev, pager, next, jumper" :total="400">
-                </el-pagination>
-              </div>
+              <el-table :data="item.data" height="95%" border stripe style="width: 100%">
+                <el-table-column fixed type="index" width="50">
+                </el-table-column>
+                <el-table-column fixed prop="xmmc" align="center" label="项目名称" width="400">
+                </el-table-column>
+                <el-table-column prop="jszgm" align="center" label="计划项目建设总规模（公顷）" width="220">
+                </el-table-column>
+                <el-table-column prop="jhztz" align="center" label="计划项目总投资（万元）" width="200">
+                </el-table-column>
+                <el-table-column prop="lxpfrq" align="center" label="立项批复日期" width="120">
+                </el-table-column>
+                <el-table-column prop="xmtzzt" align="center" label="项目投资主体" width="300">
+                </el-table-column>
+                <el-table-column prop="xmssdw" align="center" label="项目实施单位" width="320">
+                </el-table-column>
+                <el-table-column prop="xmszd" align="center" label="项目所在地" width="120">
+                </el-table-column>
+                <el-table-column align="center" label="位置查看" width="120">
+                  <template slot-scope="scope">
+                    <el-button type="primary" size="mini" disable-transitions>位置查看</el-button>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" label="详细资料" width="120">
+                  <template slot-scope="scope">
+                    <el-button type="primary" @click="zjxmDetail()" size="mini" disable-transitions>详细资料</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+              <el-pagination class="page-size" @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                :current-page="cbxm.currentPage4" :page-sizes="[100, 200, 300, 400]" :page-size="100"
+                layout="total, sizes, prev, pager, next, jumper" :total="400">
+              </el-pagination>
             </el-tab-pane>
 
 
@@ -163,7 +161,7 @@
 
       </div>
       <!-- 入库项目 -->
-      <div class="cggl" v-show="xmglMenuOpt == 4">
+      <div class="cggl" v-if="xmglMenuOpt == 4">
         <div class="chart-top">
           <div class="chart-panel chart-panel-1">
             <!-- <Bar :data="chart1Data" /> -->
@@ -216,7 +214,7 @@
         </div>
       </div>
       <!-- 统计分析 -->
-      <div class="tjfx" v-show="xmglMenuOpt == 5">
+      <div class="tjfx" v-if="xmglMenuOpt == 5">
         <!-- 卡片 -->
         <div class="xmgl-stastics-card-panel">
           <div class="xmgl-stastics-card hvr-glow" v-for="item in tjfx.cardData">
@@ -262,10 +260,11 @@
 
     </div>
     <!-- 在建项目详细信息弹窗 -->
-    <div class="zjxm-dialog" v-show="zjxm.showDetailDialog">
+    <div class="zjxm-dialog" v-if="zjxm.showDetailDialog">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
           <span>项目详细资料</span>
+          <i class="el-icon-close" @click="closeZjxmDialog" style="float: right; padding: 3px 0;"></i>
           <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
         </div>
         <div class="text-title">
@@ -338,14 +337,330 @@
           是否签署合同：<el-tag size="mini">是</el-tag>
         </div>
         <div class="text item">
-          是否完成招投标: <el-button size="mini" type="primary">附件查阅</el-button>
+          附件: <el-button @click="showFileCardDig" class="read-file-btn" size="mini" type="primary">附件查阅</el-button>
         </div>
         <div class="text item">
-          是否签署合同：<el-button size="mini" type="primary">项目进度</el-button>
+          项目进度：<el-button @click="showProgressCardDig" size="mini" type="primary">项目进度</el-button>
+        </div>
+      </el-card>
+      <div class="arrow-line"></div>
+      <div class="arrow"></div>
+      <!-- 在建项目-附件资料 -->
+      <el-card class="upload-file-card" v-if="zjxm.showFileCard">
+        <div slot="header" class="clearfix-file">
+          <span>附件资料</span>
+          <i class="el-icon-close" @click="closeFileCardDig" style="float: right; padding: 3px 0;"></i>
+        </div>
+        <div class="file-info-content">
+          <div class="text-title">
+            立项阶段：
+          </div>
+          <div class="text item">
+            入库请示
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            可行性研究报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            入库批复
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            立项申请
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            立项批复
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            勘测定界图
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            勘测定界报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            土地利用分类统计汇总表
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            项目现状图
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            规划设计图
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            单体图
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            规划设计报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            预算书
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            质量等别图
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            质量提升目标表
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            实施前影像（照片资料）
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            权属调整方案
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            财评报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            专家论证意见
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            村民代表意见
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            中标通知书
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            项目合同
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text-title">
+            实施阶段：
+          </div>
+          <div class="text item">
+            规划设计变更申请
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            规划设计变更批复
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            规划设计变更方案
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            规划设计变更图
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            规划设计变更预算
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text-title">
+            验收阶段：
+          </div>
+          <div class="text item">
+            竣工报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            项目竣工图
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            耕地质量等别评定报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            初验意见及整改报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            申请验收请示
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            技术核查报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            工程管护协议
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            工程监理报告总结
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            招投标总结报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            工程质量检查与评定报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            权属调查实施情况报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            项目结算审计报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            土地利用结构变化表
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            实施前后影像（照片）对比图
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            验收意见
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            验收整改意见/报告
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            新增耕地合格证
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text-title">
+            其他资料：
+          </div>
+          <div class="text item">
+            自查整改实施方案
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            自查整改前正射影像
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            自查整改后正射影像
+            <span class="browse-text">查看</span>
+          </div>
+          <div class="text item">
+            自查整改验收意见
+            <span class="browse-text">查看</span>
+          </div>
+        </div>
+      </el-card>
+      <!-- 在建项目-项目进度 -->
+      <el-card class="progress-card" v-if="zjxm.showProgressCard">
+        <div slot="header">
+          <span>工程形象进度</span>
+          <i class="el-icon-close" @click="closeProgressCardDig" style="float: right; padding: 3px 0;"></i>
+        </div>
+        <div>
+          <!-- <div class="text-title">
+            立项阶段：
+          </div> -->
+          <div class="text item">
+            生产道路工程:
+
+            <div class="progres-div">
+              <el-progress :percentage="40"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            田间道工程
+            <div class="progres-div">
+              <el-progress :percentage="31"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            整治生产路工程
+            <div class="progres-div">
+              <el-progress :percentage="36"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            配套沟渠
+            <div class="progres-div">
+              <el-progress :percentage="41"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            灌溉与排水
+            <div class="progres-div">
+              <el-progress :percentage="61"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            蓄水池工程
+            <div class="progres-div">
+              <el-progress :percentage="77"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            山坪塘工程
+            <div class="progres-div">
+              <el-progress :percentage="63"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            挡土墙
+            <div class="progres-div">
+              <el-progress :percentage="24"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            水田整理工程
+            <div class="progres-div">
+              <el-progress :percentage="58"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            提灌站工程
+            <div class="progres-div">
+              <el-progress :percentage="34"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            旱地整理工程
+            <div class="progres-div">
+              <el-progress :percentage="51"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            坡改梯工程
+            <div class="progres-div">
+              <el-progress :percentage="71"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            格田整理
+            <div class="progres-div">
+              <el-progress :percentage="38"></el-progress>
+            </div>
+          </div>
+          <div class="text item">
+            水渠
+            <div class="progres-div">
+              <el-progress :percentage="50"></el-progress>
+            </div>
+          </div>
         </div>
       </el-card>
     </div>
-    <div class="mask" @click="clickMask()" v-show="zjxm.showDetailDialog">
+
+
+
+
+    <div class="mask" @click="clickMask()" v-if="zjxm.showDetailDialog">
 
     </div>
   </div>
@@ -354,6 +669,7 @@
 <script>
 import * as echarts from 'echarts';
 import mapContainer from "@/components/map/init.vue"
+import data from "@/mock/data.js"
 
 export default {
   name: 'xmgl',
@@ -362,6 +678,7 @@ export default {
     return {
       // 左侧树
       isShowLeftTree: true,
+
       filterText: '', // 左侧面版搜索内容
 
       // 超过x长度简写字符串
@@ -505,13 +822,14 @@ export default {
       cbxm: {
         key: '',
         activeMenuName: '1',
+        data: data.cbxm,
         menuOpt: [
-          { id: '1', label: '全部', icon: ['fas', 'border-all'], num: 114 },
-          { id: '2', label: '土地整治', icon: ['fas', 'solar-panel'], num: 12 },
-          { id: '3', label: '增减挂钩', icon: ['fas', 'calculator'], num: 6 },
-          { id: '4', label: '矿山生态修复', icon: ['fas', 'mountain-city'], num: 25 },
-          { id: '5', label: '全域土地综合整治', icon: ['fas', 'mountain'], num: 39 },
-          { id: '6', label: '其它', icon: ['fas', 'layer-group'], num: 29 },
+          { id: '1', label: '全部', icon: ['fas', 'border-all'], num: 114, data: data.zjxm },
+          { id: '2', label: '土地整治', icon: ['fas', 'solar-panel'], num: 12, data: this.filterZjxm('土地整治') },
+          { id: '3', label: '增减挂钩', icon: ['fas', 'calculator'], num: 6, data: this.filterZjxm('增减挂钩') },
+          { id: '4', label: '矿山生态修复', icon: ['fas', 'mountain-city'], num: 25, data: data.zjxm },
+          { id: '5', label: '全域土地综合整治', icon: ['fas', 'mountain'], num: 39, data: data.zjxm },
+          { id: '6', label: '其它', icon: ['fas', 'layer-group'], num: 29, data: data.zjxm },
         ],
         tableData: [
           //id 项目名称 投资规模 承建单位  立项时间 项目类型 项目地址
@@ -522,14 +840,17 @@ export default {
           { id: 5, xmmc: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx', tzgm: 'xxxxxxxx', cjdw: 'xxxxxxxxxxx', xmlx: 'xxxxxxxxxxxxxxxxxxx', xmdz: 'xxxxxxxxxxxxxxxxxxxx', data1: '', data2: '' },
           { id: 6, xmmc: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx', tzgm: 'xxxxxxxx', cjdw: 'xxxxxxxxxxx', xmlx: 'xxxxxxxxxxxxxxxxxxx', xmdz: 'xxxxxxxxxxxxxxxxxxxx', data1: '', data2: '' },
         ],
-        currentPage4: 4,
+        currentPage4: 1,
       },
       // 在建项目
       zjxm: {
         // tab菜单
         activeTabIndex: '1',
         // 是否显示详细信息弹窗
-        showDetailDialog: true,
+        showDetailDialog: false,
+        showFileCard: false,
+        showProgressCard: false,
+        data: data.zjxm,
       },
       // 项目管理的左侧选择栏model
       xmglMenuOpt: 1,
@@ -555,7 +876,6 @@ export default {
           { id: 3, label: '水环境综合治理工程（个）', num: '80', icon: ['fas', 'calculator'] },
           { id: 4, label: '城镇空间品质提升工程（个）', num: '26', icon: ['fas', 'mountain-city'] },
           { id: 5, label: '支撑体系建设重点工程（个）', num: '26', icon: ['fas', 'mountain'] },
-
         ],
         chart1: null,
         chart2: null,
@@ -574,7 +894,8 @@ export default {
     mapContainer
   },
 
-  computed: {},
+  computed: {
+  },
 
   watch: {
     filterText(val) {
@@ -604,13 +925,13 @@ export default {
   methods: {
     // 左侧树节点点击事件
     handleCheckChange(data, checked, indeterminate) {
-      console.log(data, checked, indeterminate);
-      console.log(this.$refs.tree.getHalfCheckedKeys());
-      console.log(this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys()))
+      // console.log(data, checked, indeterminate);
+      // console.log(this.$refs.tree.getHalfCheckedKeys());
+      // console.log(this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys()))
     },
     // 渲染树节点
     renderContentTree(h, { node, data }) {
-      console.log(node, data)
+      // console.log(node, data)
       if (data.children) {
         return (
           <span style="width: 100%;display: flex;align-items: center;justify-content: space-between;font-size: 14px;">
@@ -677,20 +998,20 @@ export default {
       return ie.children != null;
     },
     fuck(ie) {
-      console.log(ie)
+      // console.log(ie)
     },
     cbxmTabsClick(tab, event) {
       console.log(tab, event)
     },
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      // console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      // console.log(`当前页: ${val}`);
     },
     xmglMenuClick(item) {
       this.xmglMenuOpt = item.id;
-      console.log(this.xmglMenuOpt);
+      // console.log(this.xmglMenuOpt);
     },
     initChart() {
       this.cggl.chart1 = echarts.init(this.$refs.chart1);
@@ -976,8 +1297,37 @@ export default {
       this.zjxm.showDetailDialog = true;
     },
     clickMask() {
-      this.zjxm.showDetailDialog = false;
+      // this.zjxm.showDetailDialog = false;
     },
+    closeZjxmDialog() {
+      this.zjxm.showDetailDialog = false;
+      this.zjxm.showProgressCard = false;
+      this.zjxm.showFileCard = false;
+    },
+    showFileCardDig() {
+      this.zjxm.showFileCard = true;
+    },
+    closeFileCardDig() {
+      this.zjxm.showFileCard = false;
+    },
+    showProgressCardDig() {
+      this.zjxm.showProgressCard = true;
+    },
+    closeProgressCardDig() {
+      this.zjxm.showProgressCard = false;
+    },
+    // 筛选数据
+    filterZjxm(name) {
+      console.log(name)
+      // 进行筛选
+      if (name == undefined) {
+        return data.zjxm;
+      } else if (name == '全部') {
+        return data.zjxm;
+      } else {
+        return data.zjxm.filter(item => item.xmlx === name)
+      }
+    }
   }
 }
 </script>
@@ -1063,7 +1413,7 @@ $treeWidth: calc(100% - 4em);
       height: 100%;
       width: calc(20em + 8px);
       transition: left 1s;
-      background-color: #fff;
+      // background-color: #fff;
       z-index: 120;
 
       // 左边栏上侧搜索框
@@ -1208,22 +1558,6 @@ $treeWidth: calc(100% - 4em);
         padding: 12px;
         box-shadow: 6px 6px 12px 0 rgb(209, 204, 204), -1px -1px 6px 0 rgb(209, 204, 204);
 
-        .cbxm-tab {
-          height: 100%;
-
-          .el-tabs__content {
-
-            .opt-1 {
-
-              .page-size {
-                display: block;
-                position: absolute;
-                z-index: 611;
-                bottom: 1px;
-              }
-            }
-          }
-        }
       }
 
     }
@@ -1431,42 +1765,174 @@ $treeWidth: calc(100% - 4em);
           }
         }
       }
-
     }
-
   }
 }
+
+$arrowWidth1: 10px;
+$arrowHeigth1: 360px;
+$arrowWidth2: 10px;
+$cardRadius: 6px;
+$cardPadding: 6px;
+$cardHeight: 100%;
 
 // 在建项目详细信息弹窗
 .zjxm-dialog {
   z-index: 1000;
   left: 10%;
   top: 0;
-  width: 60%;
+  width: 80%;
   height: 95%;
   position: absolute;
-  background-color: #fff;
+  // background-color: #fff;
   padding: 6px;
 
   .box-card {
-    width: 50%;
-    border-radius: 6px;
+    float: left;
+    width: 36rem;
+    height: $cardHeight;
+    border-radius: $cardRadius;
 
-    .text-title {
-      color: red;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
 
-    .text {
-      font-size: 14px;
-    }
+  }
 
-    .item {
-      margin-bottom: 12px;
+  .text-title {
+    color: red;
+    margin-bottom: 12px;
+    font-weight: bold;
+  }
+
+  .browse-text {
+    color: #409EFF;
+    float: right;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+
+  .text {
+    font-size: 14px;
+
+
+  }
+
+  .item {
+    margin-bottom: 12px;
+  }
+
+  // .read-file-btn {
+  //   margin-left: 12px;
+  // }
+  .el-btn {
+    margin-left: 12px;
+  }
+
+  .read-file-btn::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 28px;
+    background-color: #67C23A;
+    border-radius: 3px 0 0 3px;
+    transform: translate(-16px, -8px);
+  }
+
+  .clearfix-file::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 44px;
+    background-color: #67C23A;
+    border-radius: 3px 0 0 0px;
+    transform: translate(-12px, -12px);
+  }
+
+  // .read-file-btn::after {
+  //   content: "";
+  //   position: absolute;
+  //   width: calc(36rem - 130px);
+  //   height: 2px;
+  //   color: red;
+  //   background-color:#409EFF;
+  //   transform: translate(16px, 4px);
+  // }
+
+  // .arrow-line {
+  //   float: left;
+  //   position: relative;
+  //   display: block;
+  //   padding: 10px;
+  //   width: $arrowWidth1;
+  //   height: calc(#{$arrowHeigth1} + 13px);
+  //   border-right: 2px solid #409EFF;
+  //   border-bottom: 2px solid #409EFF;
+  //   transform: translate(0, calc(#{$arrowHeigth1} + 10px));
+  // }
+
+  // .arrow {
+  //   float: left;
+  //   position: relative;
+  //   display: block;
+  //   padding: 10px;
+  //   transform: translateY($arrowHeigth1);
+  // }
+
+  // .arrow::before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 0;
+  //   width: $arrowWidth2;
+  //   height: 2px;
+  //   background-color: #409EFF;
+  //   transform: translate(-2px, -50%) rotate(0deg);
+  //   transform-origin: left center;
+  // }
+
+  // .arrow::after {
+  //   content: "";
+  //   position: absolute;
+  //   top: 50%;
+  //   right: 0;
+  //   width: 10px;
+  //   height: 10px;
+  //   border-top: 2px solid #409EFF;
+  //   border-right: 2px solid #409EFF;
+  //   transform: translate(-5px, -50%) rotate(45deg);
+  //   transform-origin: center center;
+  // }
+
+  // 附件资料
+  .upload-file-card {
+    float: left;
+    margin-left: 12px;
+    width: 30%;
+    height: 100%;
+    // background-color: red;
+    border-radius: $cardRadius;
+    // overflow: auto;
+
+
+  }
+
+  // 进度查询
+  .progress-card {
+    float: left;
+    margin-left: 12px;
+    width: 24rem;
+    height: 100%;
+    // background-color: red;
+    border-radius: $cardRadius;
+    // overflow: auto;
+
+    .progres-div {
+      float: right;
+      width: 50%;
     }
   }
 }
+
+// 附件查看表单
+
 
 .mask {
   width: 100vw;
@@ -1480,13 +1946,76 @@ $treeWidth: calc(100% - 4em);
 </style>
 <style lang='scss'>
 .cbxm-tab {
+  height: 100%;
+
   .el-tabs__content {
-    height: 92%;
+    height: 93%;
+
+    .el-tab-pane {
+      height: 100%;
+
+      .page-size {
+        display: block;
+        position: absolute;
+        z-index: 611;
+        bottom: 1px;
+      }
+    }
+
   }
 }
+
 .zjxm-dialog {
   .el-card__header {
     padding: 12px;
   }
+}
+
+// 更改card的滚动条样式
+.el-card {
+
+  /* 滚动条整体样式 */
+  ::-webkit-scrollbar {
+    width: 6px;
+    /* 滚动条的宽度 */
+  }
+
+  /* 滚动条轨道样式 */
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    /* 滚动条轨道的背景颜色 */
+  }
+
+  /* 滚动条滑块样式 */
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* 滚动条滑块的背景颜色 */
+    border-radius: 5px;
+    /* 滚动条滑块的圆角半径 */
+  }
+
+  /* 鼠标悬停在滚动条上时的滑块样式 */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+    /* 鼠标悬停时滚动条滑块的背景颜色 */
+  }
+}
+
+.upload-file-card {
+  .el-card__body {
+    width: 100%;
+    height: calc(100% - 44px);
+
+    .file-info-content {
+      overflow: auto;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+}
+
+.el-icon-close {
+  cursor: pointer;
 }
 </style>

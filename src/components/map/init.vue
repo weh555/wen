@@ -104,7 +104,7 @@ export default {
 
           // 图版点击的属性表查询功能
           this.getMapServerChildLayerUrl(layerUrl).then(res1 => {
-            console.log(res1)
+            // console.log(res1)
             res1.forEach(item => {
               this.getMapAttributeJsonByUrlAndRender(this.getJsonUrlByMapUrl(item));
             })
@@ -121,13 +121,13 @@ export default {
       return this.selectedUrl.concat("/", layerLevel, "/images/", legendUrl)
     },
     initWork() {
-      console.log(this.legendData.layers)
+      // console.log(this.legendData.layers)
       console.log(this.getLegendImgUrl(this.legendData.layers[0].layerId, this.legendData.layers[0].legend[0].url))
     },
     getLegendData() {
       let url = "STXF/%E4%B8%89%E7%BA%BF%E5%8F%8A%E8%87%AA%E7%84%B6%E4%BF%9D%E6%8A%A4%E5%9C%B0/MapServer/legend?f=pjson";
       getLegned(url).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.legendData = res.data;
 
         this.initWork();
@@ -138,7 +138,7 @@ export default {
     getMapAttributeJsonByUrlAndRender(url) {
       axios.get(url).then(res => {
         if (res.status == 200) {
-          console.log(res.data);
+          // console.log(res.data);
           this.showDataDialog(url, res.data)
         }
       })
@@ -152,7 +152,7 @@ export default {
           for (let i = 0; i < num; i++) {
             rs.push(`${url}/${i}`);
           }
-          console.log(rs)
+          // console.log(rs)
         }
       })
       return rs
@@ -163,10 +163,10 @@ export default {
     },
     // 根据地图服务的地址url获取地图服务的json地址url
     getMapServerJson(url) {
-				console.log(`${url}?f=pjson`)
+				// console.log(`${url}?f=pjson`)
 				return new Promise((resolve, reject) => {
 					axios.get(`${url}?f=pjson`).then(res => {
-						console.log(res);
+						// console.log(res);
 						resolve(res.data)
 					}).catch(err => {
 						reject(err.data)
@@ -180,7 +180,7 @@ export default {
       loadModules(["esri/dijit/PopupTemplate",
         "esri/layers/FeatureLayer",
       ]).then(([PopupTemplate, FeatureLayer]) => {
-        console.log(configJson.fields)
+        // console.log(configJson.fields)
         var list = [];
         var listFields = [];
         configJson.fields.forEach((item) => {
